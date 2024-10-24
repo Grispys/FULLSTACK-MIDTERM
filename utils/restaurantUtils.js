@@ -5,48 +5,41 @@ const { Dishes, Cuisines, Restaurants } = require("./data");
  * @param {string} cuisine - The desired cuisine for the menu item.
  * @returns {*} A random menu item with a name, description, price, and special status.
  */
+
+// now, you can put a specific cuisine in as the argument for this function, OR you can call selectRandomCuisine.
 function generateRandomMenuItem(cuisine) {
+  const dailySpecialDecider = Math.floor(Math.random() * 2);
+  let style;
+// changes dish styles dependant on cuisine wanted
   switch(cuisine) {
     case "italian":
-      var dailySpecialDecider = Math.floor(Math.random() * 2)
-      var style = Dishes["italian"]
-      var index = Math.floor(Math.random()*style.length)
-      var dish = style[index]
-      console.log(dish, dailySpecialDecider)
+      style = Dishes["italian"];
       break;
     case "indian":
-      var dailySpecialDecider = Math.floor(Math.random() * 2)
-      var style = Dishes["indian"]
-      var index = Math.floor(Math.random()*style.length)
-      var dish = style[index]
-      console.log(dish, dailySpecialDecider)
+      style = Dishes["indian"];
       break;
     case "mexican":
-      var dailySpecialDecider = Math.floor(Math.random() * 2)
-      var style = Dishes["mexican"]
-      var index = Math.floor(Math.random()*style.length)
-      var dish = style[index]
-      console.log(dish, dailySpecialDecider)
+      style = Dishes["mexican"];
       break;
     case "chinese":
-      var dailySpecialDecider = Math.floor(Math.random() * 2)
-      var style = Dishes["chinese"]
-      var index = Math.floor(Math.random()*style.length)
-      var dish = style[index]
-      console.log(dish, dailySpecialDecider)
+      style = Dishes["chinese"];
       break;
     case "vegan":
-      var dailySpecialDecider = Math.floor(Math.random() * 2)
-      var style = Dishes["vegan"]
-      var index = Math.floor(Math.random()*style.length)
-      var dish = style[index]
-      console.log(dish, dailySpecialDecider)
+      style = Dishes["vegan"];
       break;
     default:
-  } 
+      return null;
+  }
+// chooses a random item
+  const index = Math.floor(Math.random() * style.length);
+  const dish = style[index];
+
+  console.log(dish, dailySpecialDecider); 
+  return { dish: dish, dailySpecialDecider };
 }
 
-generateRandomMenuItem('mexican')
+// generateRandomMenuItem(selectRandomCuisine())
+// generateRandomMenuItem("italian")
 
 /**
  * Selects a random cuisine type for a restaurant.
@@ -54,16 +47,33 @@ generateRandomMenuItem('mexican')
  */
 function selectRandomCuisine() {
   var todayCuisine = Cuisines[Math.floor(Math.random()*Cuisines.length)]
-  return todayCuisine;
+  console.log(todayCuisine)
+  return todayCuisine
 }
 
 /**
  * Generates a menu for a restaurant, including a random cuisine type and a list of menu items.
  * @returns {*} An object representing the restaurant's menu, including the cuisine type and items.
  */
-function generateMenu() {
-
+function generateMenu(restaurant) {
+  const menu = [];
+  // items is 5-10 random entries
+  const items = Math.floor(Math.random() * 6) + 5;
+// while entries are less than menu size add items
+  while (menu.length < items) {
+    const menuItem = generateRandomMenuItem(restaurant);
+// if items already there then dont put it in
+    if (menuItem && !menu.some(existingItem => existingItem.dish === menuItem.dish)) {
+      menu.push(menuItem);
+    } else {
+      console.log("Already in menu or invalid item:");
+    }
+  }
+  
+  console.log(menu);
+  return menu;
 }
+
 
 /**
  * Additional utility functions can be defined here if needed.

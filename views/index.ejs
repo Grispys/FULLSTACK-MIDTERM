@@ -7,6 +7,11 @@
     <body>
         <main class="main-content">
             <h1>Restaurant Menus</h1>
+            <h3>Here is an example item to get your stomach grumbling:
+                <br><br>
+                <i><%= randomItem.dish.name %> - <%= randomItem.dish.description%> $<%=randomItem.dish.price%> </i>
+                <i>This item is from <%=randomCuisine%></i>
+            </h3>
             <h2>Please choose your restaurant to get the menu</h2>
             <form action="/restaurant" method="GET">
                 <label for="restaurantId">Select a restaurant:</label>
@@ -17,6 +22,8 @@
                 </select>
                 <button type="submit">Get the menu!</button>
             </form>
+
+            <a href="/alerts">Menu Alerts</a>
         </main>
     </body>
 </html>
