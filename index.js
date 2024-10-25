@@ -8,7 +8,7 @@ const app = express();
 // and have both be corelated. correlated? correllated? 
 
 // menu is generated on startup AND stays consistent per view instance. reload the page itself? menu wont change. youd have to reload this js for it to get a new set! neato
-// i couldnt think of any better way to display what kind of cuisine that 
+
 
 const restaurantData = [
   {
