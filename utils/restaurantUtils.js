@@ -9,6 +9,12 @@ const { Dishes, Cuisines, Restaurants } = require("./data");
 // now, you can put a specific cuisine in as the argument for this function, OR you can call selectRandomCuisine.
 function generateRandomMenuItem(cuisine) {
   const dailySpecialDecider = Math.floor(Math.random() * 2);
+  let special;
+  if(dailySpecialDecider ==0){
+    special = "(Daily Special!!!)"
+  }else{
+    special = '';
+  }
   let style;
 // changes dish styles dependant on cuisine wanted
   switch(cuisine) {
@@ -34,8 +40,8 @@ function generateRandomMenuItem(cuisine) {
   const index = Math.floor(Math.random() * style.length);
   const dish = style[index];
 
-  console.log(dish, dailySpecialDecider); 
-  return { dish: dish, dailySpecialDecider };
+  console.log(dish, special); 
+  return { dish: dish, special };
 }
 
 // generateRandomMenuItem(selectRandomCuisine())

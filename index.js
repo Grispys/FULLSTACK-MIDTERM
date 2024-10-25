@@ -1,7 +1,7 @@
 const { Restaurants, Cuisines } = require("./utils/data");
 const express = require('express');
 const path = require('path');
-const { generateRandomMenuItem, generateMenu, selectRandomCuisine } = require("./utils/restaurantUtils");
+const { generateMenu, selectRandomCuisine } = require("./utils/restaurantUtils");
 
 const app = express();
 const restaurantData = [
@@ -60,26 +60,27 @@ app.get('/', (request, response) => {
    */
   app.get('/restaurant', (request, response) => {
     const restaurantId = request.query.restaurantId;
+    let display;
     console.log(`restaurantId: ${restaurantId}`);
     switch(restaurantId){
       case 'the-gourmet-bistro':
-        console.log(restaurantData[0])
+        display = (restaurantData[0].theGourmetBistro)
         break;
       case 'spicy-kitchen':
-        console.log(restaurantData[1])
+        display = (restaurantData[1].spicyKitchen)
         break;
       case 'healthy-eats':
-        console.log(restaurantData[2])
+        display = (restaurantData[2].healthyEats)
         break;
       case 'comfort-diner':
-        console.log(restaurantData[3])
+        display = (restaurantData[3].comfortDiner)
         break;
       case 'sweet-tooth-bakery':
-        console.log(restaurantData[4])
+        display = (restaurantData[4].sweetTooth)
         break;
       default:
     }
-    response.render('restaurant', {restaurantId})
+    response.render('restaurant', {restaurantId, display})
   });
 
   //Add any other required routes here
