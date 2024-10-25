@@ -4,7 +4,30 @@ const path = require('path');
 const { generateRandomMenuItem, generateMenu, selectRandomCuisine } = require("./utils/restaurantUtils");
 
 const app = express();
-let restaurantData = {}; //This should be populated soon
+const restaurantData = [
+  {
+    theGourmetBistro : generateMenu(selectRandomCuisine()),
+    name: "The Gourmet Bistro"
+
+  },
+  {
+    spicyKitchen : generateMenu(selectRandomCuisine()),
+    name: "Spicy Kitchen"
+  },
+  {
+    healthyEats : generateMenu(selectRandomCuisine()),
+    name: "Healthy Eats"
+  },
+  {
+    comfortDiner : generateMenu(selectRandomCuisine()),
+    name: "Comfort Diner"
+  },
+  { 
+  sweetTooth : generateMenu(selectRandomCuisine()),
+  name: "Sweet Tooth Bakery"
+  }
+
+]; //This should be populated soon
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -15,9 +38,19 @@ app.use(express.static('public'));
  * Renders the homepage that lists cities and restaurant names.
  */
 app.get('/', (request, response) => {
-  let randomCuisine = selectRandomCuisine()
-  let randomItem = generateRandomMenuItem(randomCuisine);
-    response.render('index', { restaurants: Restaurants, randomItem, randomCuisine});
+  const restaurantNames = [
+    "theGourmetBistro",
+    "spicyKitchen",
+    "healthyEats",
+    "comfortDiner",
+    "sweetTooth"
+  ];
+  let randomNum = Math.floor(Math.random() * restaurantNames.length);
+  let restaurantName = restaurantNames[randomNum]
+  let randomItem = restaurantData[randomNum][restaurantName][1].dish.name
+  let randomDesc = restaurantData[randomNum][restaurantName][1].dish.description
+  let randomPrice = restaurantData[randomNum][restaurantName][1].dish.price
+    response.render('index', { restaurants: Restaurants, randomItem, randomDesc, randomPrice, restaurantData, restaurantName});
   });
   
   /**
@@ -30,24 +63,19 @@ app.get('/', (request, response) => {
     console.log(`restaurantId: ${restaurantId}`);
     switch(restaurantId){
       case 'the-gourmet-bistro':
-        todayCuisine = selectRandomCuisine();
-        generateMenu(todayCuisine)
+        console.log(restaurantData[0])
         break;
       case 'spicy-kitchen':
-        todayCuisine = selectRandomCuisine();
-        generateMenu(todayCuisine)
+        console.log(restaurantData[1])
         break;
       case 'healthy-eats':
-        todayCuisine = selectRandomCuisine();
-        generateMenu(todayCuisine)
+        console.log(restaurantData[2])
         break;
       case 'comfort-diner':
-        todayCuisine = selectRandomCuisine();
-        generateMenu(todayCuisine)
+        console.log(restaurantData[3])
         break;
       case 'sweet-tooth-bakery':
-        todayCuisine = selectRandomCuisine();
-        generateMenu(todayCuisine)
+        console.log(restaurantData[4])
         break;
       default:
     }

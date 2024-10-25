@@ -63,11 +63,12 @@ function generateMenu(restaurant) {
   while (menu.length < items) {
     const menuItem = generateRandomMenuItem(restaurant);
 // if items already there then dont put it in
-    if (menuItem && !menu.some(existingItem => existingItem.dish === menuItem.dish)) {
-      menu.push(menuItem);
-    } else {
-      console.log("Already in menu or invalid item:");
-    }
+  if (!menuItem || menu.some(existingItem => existingItem.dish === menuItem.dish)) {
+    console.log("Already in menu or invalid item:");
+  }else{
+    menu.push(menuItem);
+  }
+
   }
   
   console.log(menu);

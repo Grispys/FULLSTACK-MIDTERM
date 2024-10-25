@@ -9,8 +9,8 @@
             <h1>Restaurant Menus</h1>
             <h3>Here is an example item to get your stomach grumbling:
                 <br><br>
-                <i><%= randomItem.dish.name %> - <%= randomItem.dish.description%> $<%=randomItem.dish.price%> </i>
-                <i>This item is from <%=randomCuisine%></i>
+                <i><%= randomItem %> - <%= randomDesc%> $<%=randomPrice%> </i>
+                <i>This item is from <%=restaurantName%></i>
             </h3>
             <h2>Please choose your restaurant to get the menu</h2>
             <form action="/restaurant" method="GET">
