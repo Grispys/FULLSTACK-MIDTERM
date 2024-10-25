@@ -12,7 +12,11 @@
                 <p>sup bitch</p>
                 
                 <h1><%= restaurantId %> Menu</h1>
+                <h2>This restaurant serves <%= cuisine%> style cuisine!</h2>
 
+
+                <!-- takes every item from the restaurantid list, and puts it into a list
+                 with their corresponding name, desc, price, and if theyre daily special -->
                 <ul>
                   <% display.forEach(item => { %>
                     <li>

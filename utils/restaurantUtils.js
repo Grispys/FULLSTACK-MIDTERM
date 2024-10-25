@@ -78,7 +78,7 @@ function generateMenu(restaurant) {
   }
   
   console.log(menu);
-  return menu;
+  return{menu, restaurant};
 }
 
 
