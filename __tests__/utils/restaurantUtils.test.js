@@ -31,7 +31,7 @@ describe('Restaurant Functions', () => {
 
 
 
-  test('generateMenu should return a valid menu array with 5-10 objects and no duplicates', () => {
+  test('generateMenu should return a valid menu array with 5-10 objects and no duplicates and be proper cuisine type', () => {
     const { menu, restaurant } = generateMenu(selectRandomCuisine()); //restaurant is included but never used because generateMenu returns both menu and restaurant, but where restaurant
     //is only being returned because its the value of selectRandomCuisine, and i return it so i can use it in the ejs display, theres no need to test it.
 
