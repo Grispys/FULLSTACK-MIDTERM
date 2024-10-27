@@ -46,6 +46,7 @@ app.use(express.static('public'));
 
 // the stuff i added here is just for the random food to display on the home screen. takes a string from restaurantNames and uses with randomNum to get a random restaurant selected
 // that gets put into the other 3 variables to pick the name, desc, and price. also used to show where the menu item came from. and it all works flawlessly! and looks ugly
+// and yeah, the item it displays on the home screen, you WILL find if you visit that restaurants menu page
 app.get('/', (request, response) => {
   const restaurantNames = [
     "theGourmetBistro",
