@@ -56,9 +56,9 @@ app.get('/', (request, response) => {
   ];
   let randomNum = Math.floor(Math.random() * restaurantNames.length);
   let restaurantName = restaurantNames[randomNum]
-  let randomItem = restaurantData[randomNum][restaurantName][1].dish.name
-  let randomDesc = restaurantData[randomNum][restaurantName][1].dish.description
-  let randomPrice = restaurantData[randomNum][restaurantName][1].dish.price
+  let randomItem = restaurantData[randomNum][restaurantName].menu[randomNum].dish.name
+  let randomDesc = restaurantData[randomNum][restaurantName].menu[randomNum].dish.description
+  let randomPrice = restaurantData[randomNum][restaurantName].menu[randomNum].dish.price
     response.render('index', { restaurants: Restaurants, randomItem, randomDesc, randomPrice, restaurantData, restaurantName});
   });
   
