@@ -85,5 +85,13 @@ function generateMenu(restaurant) {
 /**
  * Additional utility functions can be defined here if needed.
  */
+  
 
-module.exports = { generateRandomMenuItem, selectRandomCuisine, generateMenu };
+  // this function is just for deciding when restuarants should have a dish of the day
+  function coinFlip(){
+    let result = Math.floor(Math.random() * 2);
+    return result
+
+  }
+
+module.exports = { generateRandomMenuItem, selectRandomCuisine, generateMenu, coinFlip };

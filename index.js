@@ -1,15 +1,13 @@
 const { Restaurants, Cuisines } = require("./utils/data");
 const express = require('express');
 const path = require('path');
-const { generateMenu, selectRandomCuisine } = require("./utils/restaurantUtils");
+const { generateMenu, selectRandomCuisine, coinFlip } = require("./utils/restaurantUtils");
 
 const app = express();
 // i turned restaurantdata into a constant array instead of var {}. made more sense so i can have both a string name to be displayed and the actual menu
 // and have both be corelated. correlated? correllated? 
 
 // menu is generated on startup AND stays consistent per view instance. reload the page itself? menu wont change. youd have to reload this js for it to get a new set! neato
-
-
 const restaurantData = [
   {
     theGourmetBistro : generateMenu(selectRandomCuisine()),
@@ -33,7 +31,45 @@ const restaurantData = [
   name: "Sweet Tooth Bakery"
   }
 
-]; //This should be populated soon
+]; 
+
+let gourmetAlerts;
+let spicyAlerts;
+let healthyAlerts;
+let comfortAlerts;
+let sweetAlerts;
+if(coinFlip() == 1){
+    gourmetAlerts = restaurantData[0]["theGourmetBistro"].menu[0].dish.name
+}else{
+  gourmetAlerts = "No current Dish of the Day."
+}
+
+if(coinFlip() == 1){
+  spicyAlerts = restaurantData[1]["spicyKitchen"].menu[0].dish.name
+}else{
+  spicyAlerts = "No current Dish of the Day."
+}
+
+if(coinFlip() == 1){
+  healthyAlerts = restaurantData[2]["healthyEats"].menu[0].dish.name
+}else{
+  healthyAlerts = "No current Dish of the Day."
+}
+
+if(coinFlip() == 1){
+  comfortAlerts = restaurantData[3]["comfortDiner"].menu[0].dish.name
+}else{
+  comfortAlerts = "No current Dish of the Day."
+}
+
+if(coinFlip() == 1){
+  sweetAlerts = restaurantData[4]["sweetTooth"].menu[0].dish.name
+}else{
+  sweetAlerts = "No current Dish of the Day."
+}
+// and listen man. i know this looks like a really lazy way to generate the dishes of the day for the menu alert page. and it is. i am tired.
+// also it's up here instead of in the app.get so that the dishes of the day don't change between page refresh, only between server instance. 
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -106,7 +142,8 @@ app.get('/', (request, response) => {
   //Add any other required routes here
 
   app.get("/alerts",(request, response)=>{
-    response.render('alerts');
+
+    response.render('alerts', {gourmetAlerts, spicyAlerts, healthyAlerts, comfortAlerts, sweetAlerts});
   });
 
 const port = 3000;

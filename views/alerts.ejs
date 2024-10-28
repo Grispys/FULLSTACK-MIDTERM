@@ -6,7 +6,29 @@
     </head>
     <body>
         <main class="main-content">
-            <H1>AHHHHHHHHHHHHHHHH ALERTS IM SCARED AAAAAAAAAAAAAAAA</H1>
+            <H1 class = "alertTitle">Welcome to the Alerts page.</H1>
+            <h3 class = "alertTitle">Here, you will find all the ongoing menu specials for each restaurant.
+                <br>If there is a Dish of the Day, it's on the top of the restaurants menu.
+            </h3>
+            <a href="/">Home</a>
         </main>
+        <table id ="alerts" style="width:50%">
+            <tr>
+              <th>The Gourmet Bistro</th>
+              <th>Spicy Kitchen</th>
+              <th>Healthy Eats</th>
+              <th>Comfort Diner</th>
+              <th>Sweet Tooth Bakery</th>
+            </tr>
+            <tr>
+              <td><%= gourmetAlerts%></td>
+              <td><%=spicyAlerts %></td>
+              <td><%=healthyAlerts %></td>
+              <td><%=comfortAlerts %></td>
+              <td><%=sweetAlerts %></td>
+            </tr>
+          </table>
+          
     </body>
+    
 </html>

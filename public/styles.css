@@ -35,3 +35,20 @@ body {
     margin-left: 5px;
     cursor: pointer;
 }
+
+#alerts{
+    color: rgb(0, 0, 0);
+    margin: 100px;
+}
+td{
+    text-align: center;
+}
+
+table, th, td {
+    border:3px solid black;
+    background-color: rgb(224, 194, 158);
+  }
+
+.alertTitle{
+    margin-left: 60px;
+  }
